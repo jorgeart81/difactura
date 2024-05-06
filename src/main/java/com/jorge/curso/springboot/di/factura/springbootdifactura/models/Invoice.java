@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+
 @Component
 public class Invoice {
 
@@ -17,6 +20,16 @@ public class Invoice {
 
   @Autowired
   private List<Item> items;
+
+  @PostConstruct
+  public void init() {
+    System.out.println("Creating the Invoice component");
+  }
+
+  @PreDestroy
+  public void destroy() {
+    System.out.println("Destroying the Invoice component");
+  }
 
   public Client getClient() {
     return client;
